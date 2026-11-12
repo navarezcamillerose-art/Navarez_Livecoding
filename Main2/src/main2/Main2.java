@@ -16,28 +16,29 @@ public class Main2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        input.useDelimiter("[,\\s]+");
-        int a = input.nextInt();
-        int b = input.nextInt();
-//validate
-        if (a == 0 && b == 0) {
-            System.out.println("undefined for o and 0");
-        } else {
-            int result = gcd(a, b);
-            System.out.println(result);
-        }
+Scanner input = new Scanner(System.in);
 
-    }
-//Recursive method find GCD
+int number = input.nextInt();  
+    int result = sumOfDigits(number);  
+    // Validate   
+    if (number < 0) {  
+        System.out.println("Invalid input.");  
+    } else {  
+        System.out.println(result);  
+    }  
+}  
 
-    static int gcd(int a, int b) {
-        //base case
-        if (b == 0) {
-            return a;
-        }
-        //recursive case
-        return gcd(b, a % b);
-    }
+// Recursive method to calculate the sum of digits   
+public static int sumOfDigits(int number) {  
+
+    // Base case: if number is 0, return 0  
+    if (number == 0) {  
+        return 0;  
+    }  
+
+    // Recursive case:  
+    // Get the last digit and add the remaining digits    
+    return (number % 10) + sumOfDigits(number / 10);  
+}
 
 }
