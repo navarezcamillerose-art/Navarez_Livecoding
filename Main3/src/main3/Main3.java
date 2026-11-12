@@ -13,21 +13,21 @@ public class Main {
 
         String line = input.nextLine();
 
-        // Remove the braces and unnecessary spaces from the input
+        // Remove braces and spaces from the input
         line = line.replace("{", "").replace("}", "").replace(" ", "");
 
-        // Divide the input values based on the commas
+        // Separate the numbers using commas
         String[] numbers = line.split(",");
 
-        // Create an integer array to hold the converted values
+        // Create an array to store the integer values
         int[] values = new int[numbers.length];
 
-        // Convert every input number from String to integer
+        // Convert each string value into an integer
         for (int i = 0; i < numbers.length; i++) {
             values[i] = Integer.parseInt(numbers[i]);
         }
 
-        // Print the calculated results on the screen
+        // Display the sum, largest number, and count of even numbers
         System.out.println();
         System.out.println(arraySum(values, 0) + ", "
                 + findMaximum(values, 0) + ", "
@@ -36,30 +36,30 @@ public class Main {
         input.close();
     }
 
-    // Computes the total of all elements in the array
+    // Finds the sum of all numbers in the array
     public static int arraySum(int[] values, int index) {
 
-        // End the recursive process once every element is covered
+        // Stop when all array elements have been checked
         if (index == values.length) {
             return 0;
         }
 
-        // Add the current value to the sum of the next elements
+        // Add the current number to the sum of the remaining elements
         return values[index] + arraySum(values, index + 1);
     }
 
-    // Determines the highest number stored in the array
+    // Finds the largest number in the array
     public static int findMaximum(int[] values, int index) {
 
-        // Return the final element when it is the only one left
+        // Return the last element when only one element remains
         if (index == values.length - 1) {
             return values[index];
         }
 
-        // Get the greatest value from the remaining elements
+        // Find the largest number among the remaining elements
         int maximum = findMaximum(values, index + 1);
 
-        // Identify which is greater between the current and maximum values
+        // Compare the current number with the largest number found
         if (values[index] > maximum) {
             return values[index];
         } else {
@@ -67,19 +67,19 @@ public class Main {
         }
     }
 
-    // Calculates how many even numbers are present in the array
+    // Counts the number of even elements in the array
     public static int countEven(int[] values, int index) {
 
-        // Finish the process after reaching the end of the array
+        // Stop when the end of the array is reached
         if (index == values.length) {
             return 0;
         }
 
-        // Determine whether the current number is divisible by two
+        // Check if the current number is divisible by two
         if (values[index] % 2 == 0) {
             return 1 + countEven(values, index + 1);
         } else {
-            // Move to the next element without adding to the count
+            // Move to the next element without increasing the count
             return countEven(values, index + 1);
         }
     }
